@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    char names[50][50];
+    int marks[50];
+    int n, i, highestIndex = 0;
+
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("Enter name of student %d: ", i + 1);
+        scanf("%s", names[i]);
+
+        printf("Enter marks of %s: ", names[i]);
+        scanf("%d", &marks[i]);
+    }
+
+    for (i = 1; i < n; i++) {
+        if (marks[i] > marks[highestIndex]) {
+            highestIndex = i;
+        }
+    }
+
+    printf("\nHighest Scorer:\n");
+    printf("Name: %s\n", names[highestIndex]);
+    printf("Marks: %d\n", marks[highestIndex]);
+
+    return 0;
+}
