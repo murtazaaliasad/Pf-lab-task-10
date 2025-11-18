@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char categories[3][20] = {"Appetizers", "Main Course", "Desserts"};
+    char items[3][3][30];
+    float prices[3][3];
+    int i, j;
+
+    for (i = 0; i < 3; i++) {
+        printf("Enter 3 items for %s:\n", categories[i]);
+        for (j = 0; j < 3; j++) {
+            printf("Item %d name: ", j + 1);
+            scanf(" %[^\n]", items[i][j]);
+            printf("Price of %s: $", items[i][j]);
+            scanf("%f", &prices[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n----- Complete Menu -----\n");
+    for (i = 0; i < 3; i++) {
+        printf("\n%s:\n", categories[i]);
+        for (j = 0; j < 3; j++) {
+            printf("  %s - $%.2f\n", items[i][j], prices[i][j]);
+        }
+    }
+
+    printf("\n----- Budget-Friendly Items (Under $10) -----\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (prices[i][j] < 10) {
+                printf("%s (%s) - $%.2f\n", items[i][j], categories[i], prices[i][j]);
+            }
+        }
+    }
+
+    return 0;
+}
