@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_EMAIL_LENGTH 100
+
+void extract_domain(const char *email) {
+    const char *domain_ptr = strchr(email, '@');
+
+    if (domain_ptr != NULL) {
+        printf(" -> Domain: %s\n", domain_ptr + 1);
+    } else {
+        printf(" -> Domain: Invalid email\n");
+    }
+}
+
+int main() {
+    char email[MAX_EMAIL_LENGTH];
+    
+    printf("--- Email Domain Extraction Tool ---\n");
+    printf("Enter an email address: ");
+    
+    if (fgets(email, MAX_EMAIL_LENGTH, stdin) != NULL) {
+        size_t len = strlen(email);
+        if (len > 0 && email[len - 1] == '\n') {
+            email[len - 1] = '\0';
+        }
+        
+        printf("Input Email: %s\n", email);
+        extract_domain(email);
+    } else {
+        printf("Error reading input.\n");
+        return 1;
+    }
+
+    return 0;
+}
