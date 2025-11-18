@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int hasUppercase(const char *p) {
+    for (int i = 0; p[i] != '\0'; i++)
+        if (isupper(p[i])) return 1;
+    return 0;
+}
+
+int hasDigit(const char *p) {
+    for (int i = 0; p[i] != '\0'; i++)
+        if (isdigit(p[i])) return 1;
+    return 0;
+}
+
+int hasSpecial(const char *p) {
+    for (int i = 0; p[i] != '\0'; i++)
+        if (p[i] == '!' || p[i] == '@' || p[i] == '#' || p[i] == '$' || p[i] == '%')
+            return 1;
+    return 0;
+}
+
+int main() {
+    char password[100];
+
+    printf("Enter password: ");
+    scanf("%s", password);
+
+    if (strlen(password) < 8 ||
+        !hasUppercase(password) ||
+        !hasDigit(password) ||
+        !hasSpecial(password)) {
+        
+        printf("Password is weak.\n");
+    } else {
+        printf("Password is strong.\n");
+    }
+
+    return 0;
+}
