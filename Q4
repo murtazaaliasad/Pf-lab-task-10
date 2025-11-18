@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    char msg[200];
+    int i;
+
+    printf("Enter a message: ");
+    fgets(msg, sizeof(msg), stdin);
+
+    for (i = 0; msg[i] != '\0'; i++) {
+        char ch = msg[i];
+
+        if (ch >= 'A' && ch <= 'Z') {
+            ch = ch + 3;
+            if (ch > 'Z') ch = ch - 26;
+            msg[i] = ch;
+        }
+        else if (ch >= 'a' && ch <= 'z') {
+            ch = ch + 3;
+            if (ch > 'z') ch = ch - 26;
+            msg[i] = ch;
+        }
+    }
+
+    printf("Encrypted message: %s", msg);
+
+    return 0;
+}
